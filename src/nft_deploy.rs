@@ -15,11 +15,11 @@ impl Contract {
         acc_id 
     }
 
-    fn get_events_contract_id(events_contract_id : Option<AccountId>) -> AccountId {
+    fn get_collections_contract_id(collections_contract_id : Option<AccountId>) -> AccountId {
 
-        if events_contract_id.is_some(){
+        if collections_contract_id.is_some(){
 
-            return events_contract_id.unwrap();
+            return collections_contract_id.unwrap();
         }
 
         EVENTS_CONTRACT_ID.parse().unwrap()
@@ -34,7 +34,7 @@ const DATA_IMAGE_SVG_NEAR_ICON: &str = "data:image/svg+xml,%3Csvg xmlns='http://
 
 const CALLBACK_TGAS : u64 = 1*TGAS;
 
-const EVENTS_CONTRACT_ID :  &'static str = "tm_events_contract.testnet";
+const EVENTS_CONTRACT_ID :  &'static str = "tm_collections_contract.testnet";
 
 #[near_bindgen]
 impl Contract {
@@ -46,16 +46,16 @@ impl Contract {
     }
 
     #[payable]
-    pub fn create_event_and_deploy(
+    pub fn create_collection_and_deploy(
         &mut self, 
         init_balance : u32, 
-        event : Event ){
+        collection : Collection ){
 
 
         self.is_signer_registered();
 
         
-        let contract_id = Self::get_sub_account_id(event.symbol.clone());
+        let contract_id = Self::get_sub_account_id(collection.symbol.clone());
 
         // allow for 3 decimals, which means
         let actual_init_bal = Self::to_actual_amount(init_balance);
@@ -85,7 +85,7 @@ impl Contract {
 
             Self::ext(env::current_account_id())
             .with_static_gas(Gas(CALLBACK_TGAS))
-            .nft_contract_deploy_callback(contract_id, bal, event, self.events_contract_id.clone())
+            .nft_contract_deploy_callback(contract_id, bal, collection, self.collections_contract_id.clone())
         );
     
     }
@@ -99,8 +99,8 @@ impl Contract {
     pub fn nft_contract_deploy_callback(
         contract_id : AccountId,
         init_balance : Balance,
-        event : Event , 
-        events_contract_id : Option<AccountId>,
+        collection : Collection , 
+        collections_contract_id : Option<AccountId>,
         #[callback_result] call_result: Result<(), PromiseError>) {
 
 
@@ -114,7 +114,7 @@ impl Contract {
             return;
         }
 
-        let mut icon = event.icon.clone();
+        let mut icon = collection.icon.clone();
         if icon.is_none() {
 
             icon = Some(DATA_IMAGE_SVG_NEAR_ICON.to_string());
@@ -126,13 +126,13 @@ impl Contract {
         nft_contract::ext(contract_id.clone())
         .with_static_gas(Gas(5*TGAS))
         .init_with_metadata(env::signer_account_id(), 
-        event.title.clone(), event.symbol.clone(), icon, 
-        event.base_uri.clone())
+        collection.title.clone(), collection.symbol.clone(), icon, 
+        collection.base_uri.clone())
         .then(
 
             Self::ext(env::current_account_id())
             .with_static_gas(Gas(CALLBACK_TGAS))
-            .nft_contract_init_callback(contract_id, event, events_contract_id)
+            .nft_contract_init_callback(contract_id, collection, collections_contract_id)
         );
     
 
@@ -144,8 +144,8 @@ impl Contract {
     #[private]
     pub fn nft_contract_init_callback(
         contract_id : AccountId,
-        event : Event, 
-        events_contract_id : Option<AccountId>,
+        collection : Collection, 
+        collections_contract_id : Option<AccountId>,
         #[callback_result] call_result: Result<(), PromiseError>) {
 
         if call_result.is_err() {
@@ -155,23 +155,24 @@ impl Contract {
 
         env::log_str(format!("NFT contract {} has been initialized!", contract_id.clone()).as_str());
 
-        events_contract::ext(Self::get_events_contract_id(events_contract_id))
+        collections_contract::ext(Self::get_collections_contract_id(collections_contract_id))
         .with_static_gas(Gas(5*TGAS))
-        .create_event(env::signer_account_id(), event.title.clone(),
-        event.symbol, 
-        event.icon, event.base_uri,
-        event.description, 
-        event.total_tickets,
-        event.tickets_sold,
-        event.ticket_types,
-        event.attributes,
-        event.ticket_template_type, 
+        .create_collection(env::signer_account_id(), collection.title.clone(),
+        collection.symbol, 
+        collection.icon, collection.base_uri,
+        collection.description, 
+        collection.category,
+        collection.total_tickets,
+        collection.tickets_sold,
+        collection.ticket_types,
+        collection.attributes,
+        collection.ticket_template_type, 
         Some(contract_id))
         .then(
 
             Self::ext(env::current_account_id())
             .with_static_gas(Gas(CALLBACK_TGAS))
-            .nft_event_create_callback(event.title)
+            .nft_collection_create_callback(collection.title)
         );
 
 
@@ -179,20 +180,20 @@ impl Contract {
 
 
     #[private]
-    pub fn nft_event_create_callback(
-        event_title : String, 
+    pub fn nft_collection_create_callback(
+        collection_title : String, 
         #[callback_result] call_result: Result<(), PromiseError>) 
     {
 
         if call_result.is_err() {
 
-            env::panic_str(format!("Failed to create event '{}' in NFT event store!", 
-            event_title).as_str());
+            env::panic_str(format!("Failed to create collection '{}' in NFT collection store!", 
+            collection_title).as_str());
         }
 
 
-        env::log_str(format!("Event {} has been created in NFT event store!", 
-        event_title).as_str());
+        env::log_str(format!("Collection {} has been created in NFT collection store!", 
+        collection_title).as_str());
 
     }
 

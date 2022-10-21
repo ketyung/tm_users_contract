@@ -48,7 +48,7 @@ pub struct TicketTemplate {
 
 #[derive(Debug, Clone, Serialize, Deserialize, BorshDeserialize, BorshSerialize)]
 #[serde(crate = "near_sdk::serde")]
-pub enum EventAttributeType {
+pub enum AttributeType {
 
     StartDate,
 
@@ -65,9 +65,9 @@ pub enum EventAttributeType {
 
 #[derive(BorshDeserialize, BorshSerialize,Serialize, Deserialize, Debug)]
 #[serde(crate = "near_sdk::serde")]
-pub struct EventAttribute{
+pub struct Attribute{
 
-    pub name : EventAttributeType,
+    pub name : AttributeType,
 
     pub value : String, 
 }
@@ -90,7 +90,7 @@ pub struct TicketType{
 
 #[derive(BorshDeserialize, BorshSerialize,Serialize, Deserialize)]
 #[serde(crate = "near_sdk::serde")]
-pub struct Event{
+pub struct Collection{
 
     pub title : String, 
 
@@ -102,13 +102,15 @@ pub struct Event{
     
     pub description : Option<String>, 
 
+    pub category : Option<String>, 
+
     pub ticket_types : Option<Vec<TicketType>>,
 
     pub total_tickets : Option<u64>,
     
     pub tickets_sold : Option<u64>,
 
-    pub attributes : Option<Vec<EventAttribute>>,
+    pub attributes : Option<Vec<Attribute>>,
 
     pub ticket_template_type : Option<TicketTemplate>,
     

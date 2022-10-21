@@ -22,7 +22,7 @@ pub struct Contract {
     
     users: UnorderedMap<String, User>,
 
-    events_contract_id : Option<AccountId>,
+    collections_contract_id : Option<AccountId>,
 
     date_updated : Option<u64>, 
 }
@@ -37,7 +37,7 @@ enum StorageKey {
 impl Default for Contract{
     fn default() -> Self{
         Self{users: UnorderedMap::new(StorageKey::UserStorageKey), 
-            events_contract_id : None, 
+            collections_contract_id : None, 
             date_updated : Some(env::block_timestamp()) }
     }
 }
@@ -51,7 +51,7 @@ impl Contract {
     pub (crate) fn init() -> Self {
         assert!(!env::state_exists(), "Already initialized");
         Self{users: UnorderedMap::new(StorageKey::UserStorageKey), 
-        events_contract_id : None, 
+        collections_contract_id : None, 
         date_updated : Some(env::block_timestamp()) }
     }
 
@@ -64,10 +64,10 @@ impl Contract {
     #[init]
     #[private] // Public - but only callable by env::current_account_id()
     #[allow(dead_code)]
-    pub fn init_with(_events_contract_id : AccountId) -> Self {
+    pub fn init_with(_collections_contract_id : AccountId) -> Self {
         assert!(!env::state_exists(), "Already initialized");
         Self{users: UnorderedMap::new(StorageKey::UserStorageKey), 
-        events_contract_id : Some(_events_contract_id), 
+        collections_contract_id : Some(_collections_contract_id), 
         date_updated : Some(env::block_timestamp()) }
     }
 

@@ -16,20 +16,21 @@ trait NftContract {
 
 // For cross-contract calls to create the collection
 // in the collection store contract
-#[ext_contract(events_contract)]
-trait EventsContract {
+#[ext_contract(collections_contract)]
+trait CollectionsContract {
   
-    fn create_event (
+    fn create_collection (
         acc_id : AccountId,     
         title : String, 
         symbol : String,
         icon : Option<String>,
         base_uri : Option<String>,
         description : Option<String>,
+        category : Option<String>,
         total_tickets : Option<u64>,
         tickets_sold : Option<u64>,
         ticket_types : Option<Vec<TicketType>>,
-        attributes : Option<Vec<EventAttribute>>,
+        attributes : Option<Vec<Attribute>>,
         template_type : Option<TicketTemplate>,
         contract_id : Option<AccountId>);
 
