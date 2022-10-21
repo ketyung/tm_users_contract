@@ -117,4 +117,14 @@ pub struct Collection{
 }
 
 
+#[derive(BorshDeserialize, BorshSerialize,Serialize, Deserialize)]
+#[serde(crate = "near_sdk::serde")]
+pub struct CollectionId {
+
+    pub title : String, 
+
+    pub symbol : String, 
+    
+    pub owner : AccountId, 
+}
 
