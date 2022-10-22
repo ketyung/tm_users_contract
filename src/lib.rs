@@ -39,6 +39,7 @@ enum StorageKey {
 }
 
 // Define the default, which automatically initializes the contract
+
 impl Default for Contract{
     fn default() -> Self{
         Self{users: UnorderedMap::new(StorageKey::UserStorageKey), 
@@ -69,8 +70,7 @@ impl Contract {
 
     #[init]
     #[private] // Public - but only callable by env::current_account_id()
-    #[allow(dead_code)]
-    pub fn init_with(collections_contract_id : AccountId) -> Self {
+    pub fn init(collections_contract_id : AccountId) -> Self {
         assert!(!env::state_exists(), "Already initialized");
         let s = Self{users: UnorderedMap::new(StorageKey::UserStorageKey), 
         collections_contract_id : Some(collections_contract_id.clone()), 
