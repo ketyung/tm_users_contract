@@ -1,6 +1,7 @@
 pub mod models;
 pub mod ext;
 pub mod users_view;
+pub mod users_manage;
 pub mod nft_deploy;
 pub mod ticket_mint;
 
@@ -68,11 +69,16 @@ impl Contract {
     #[init]
     #[private] // Public - but only callable by env::current_account_id()
     #[allow(dead_code)]
-    pub fn init_with(_collections_contract_id : AccountId) -> Self {
+    pub fn init_with(collections_contract_id : AccountId) -> Self {
         assert!(!env::state_exists(), "Already initialized");
-        Self{users: UnorderedMap::new(StorageKey::UserStorageKey), 
-        collections_contract_id : Some(_collections_contract_id), 
-        date_updated : Some(env::block_timestamp()) }
+        let s = Self{users: UnorderedMap::new(StorageKey::UserStorageKey), 
+        collections_contract_id : Some(collections_contract_id.clone()), 
+        date_updated : Some(env::block_timestamp()) };
+
+        env::log_str(
+            format!("users contract initialized with {:?}", collections_contract_id).as_str());
+            
+        return s ;
     }
 
 }
