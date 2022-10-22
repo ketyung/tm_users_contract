@@ -47,6 +47,7 @@ impl Default for Contract{
     }
 }
 
+/*
 #[near_bindgen]
 impl Contract {
 
@@ -60,7 +61,7 @@ impl Contract {
         date_updated : Some(env::block_timestamp()) }
     }
 
-}
+}*/
 
 
 #[near_bindgen]
