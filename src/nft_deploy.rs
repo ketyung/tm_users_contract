@@ -108,7 +108,9 @@ impl Contract {
             Promise::new(env::signer_account_id())
             .transfer(init_balance).as_return();
             
-            env::log_str("return at nft_contract_deploy_callback");
+            env::log_str(
+            format!("return at nft_contract_deploy_callback & tx back init_balanace {}", 
+            init_balance).as_str());
             return;
         }
 
