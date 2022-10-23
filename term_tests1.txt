@@ -1,5 +1,5 @@
 // To deploy contract
- near deploy --accountId test_tm_users_contract.testnet --wasmFile target/wasm32-unknown-unknown/release/tm_users_contract.wasm 
+near deploy --accountId test_tm_users_contract.testnet --wasmFile target/wasm32-unknown-unknown/release/tm_users_contract.wasm 
 
 // Delete account
 near delete test_tm_users_contract.testnet ketyung.testnet
@@ -12,9 +12,11 @@ near call test_tm_users_contract.testnet signup_user '{"first_name":"Christopher
 
 near call test_tm_users_contract.testnet signup_user '{"first_name":"JK", "last_name":"Wong"}' --accountId jk_wong.testnet
 
+near call test_tm_users_contract.testnet signup_user '{"first_name":"Pei Pei", "last_name":"Chang"}' --accountId peipei007.testnet
+
 // To view all users 
 near view test_tm_users_contract.testnet get_users
 
 
 // Create collection
-near call test_tm_users_contract.testnet create_collection_and_deploy '{"init_balance":21075,"collection":{"title":"Test NFT Collection 1", "symbol":"TCN1", "icon":"https://k2xpcad4sovv3myhkocu4h53g55kylfaticbna4luuejbzh6o5jq.arweave.net/Vq7xAHyTq12zB1OFTh-7N3qsLKCaBBaDi6UIkOT-d1M"}}' --deposit 21.5 --gas 300000000000000 --accountId ketyung.testnet
+near call test_tm_users_contract.testnet create_collection_and_deploy '{"init_balance":21075,"collection":{"title":"Test NFT Collection 2", "symbol":"TCN2", "icon":"https://k2xpcad4sovv3myhkocu4h53g55kylfaticbna4luuejbzh6o5jq.arweave.net/Vq7xAHyTq12zB1OFTh-7N3qsLKCaBBaDi6UIkOT-d1M"}}' --deposit 21.5 --gas 300000000000000 --accountId ketyung.testnet
