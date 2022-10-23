@@ -5,7 +5,7 @@
 near delete test_tm_users_contract.testnet ketyung.testnet
 
 // To initialize the contract 
-near call test_tm_users_contract.testnet init '{"collections_contract_id":"test_tm_collections_contract"}' --accountId test_tm_users_contract.testnet
+near call test_tm_users_contract.testnet init '{"collections_contract_id":"test_tm_collections_contract.testnet"}' --accountId test_tm_users_contract.testnet
 
 // To add a user 
 near call test_tm_users_contract.testnet signup_user '{"first_name":"Christopher", "last_name":"Chee"}' --accountId ketyung.testnet
@@ -14,3 +14,7 @@ near call test_tm_users_contract.testnet signup_user '{"first_name":"JK", "last_
 
 // To view all users 
 near view test_tm_users_contract.testnet get_users
+
+
+// Create collection
+near call test_tm_users_contract.testnet create_collection_and_deploy '{"init_balance":21075,"collection":{"title":"Test NFT Collection 1", "symbol":"TCN1", "icon":"https://k2xpcad4sovv3myhkocu4h53g55kylfaticbna4luuejbzh6o5jq.arweave.net/Vq7xAHyTq12zB1OFTh-7N3qsLKCaBBaDi6UIkOT-d1M"}}' --deposit 21.5 --gas 300000000000000 --accountId ketyung.testnet
