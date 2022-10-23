@@ -19,4 +19,4 @@ near view test_tm_users_contract.testnet get_users
 
 
 // Create collection
-near call test_tm_users_contract.testnet create_collection_and_deploy '{"init_balance":21075,"collection":{"title":"Test NFT Collection 2", "symbol":"TCN2", "icon":"https://k2xpcad4sovv3myhkocu4h53g55kylfaticbna4luuejbzh6o5jq.arweave.net/Vq7xAHyTq12zB1OFTh-7N3qsLKCaBBaDi6UIkOT-d1M"}}' --deposit 21.5 --gas 300000000000000 --accountId ketyung.testnet
+near call test_tm_users_contract.testnet create_collection_and_deploy '{"init_balance":21075,"collection":{"title":"Test NFT Collection 03", "symbol":"TCN03", "icon":"https://k2xpcad4sovv3myhkocu4h53g55kylfaticbna4luuejbzh6o5jq.arweave.net/Vq7xAHyTq12zB1OFTh-7N3qsLKCaBBaDi6UIkOT-d1M"}}' --deposit 21.5 --gas 300000000000000 --accountId ketyung.testnet
