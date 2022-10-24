@@ -29,3 +29,6 @@ near call test_tm_users_contract.testnet update_collection '{"title":"Test NFT C
 
 // update total tickets
 near call test_tm_users_contract.testnet update_collection '{"title":"Test NFT Collection 030", "symbol":"TCN030","data_for_update":{"total_tickets":50}}' --accountId ketyung.testnet
+
+// update category
+near call test_tm_users_contract.testnet update_collection '{"title":"Test NFT Collection 030", "symbol":"TCN030","data_for_update":{"category":"Concert Ticket"}}' --accountId ketyung.testnet
