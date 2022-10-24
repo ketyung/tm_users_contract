@@ -207,12 +207,19 @@ impl Contract {
 
     // A wrapper function for cross-contract calling to
     // update the collection
-    pub fn update_collection (&self, collection_id : CollectionId,
-        update_collection_data : crate::models::CollectionDataForUpdate){
+    pub fn update_collection (&self, title : String,
+        symbol : String,
+        data_for_update : crate::models::CollectionDataForUpdate){
+        
+        let collection_id = CollectionId {
+            owner : env::signer_account_id().as_str().to_string(),
+            title : title,
+            symbol : symbol,
+        };
 
         collections_contract::ext(Self::get_collections_contract_id(self.collections_contract_id.clone()))
         .with_static_gas(Gas(5*TGAS))
-        .update_collection(collection_id,update_collection_data).as_return();
+        .update_collection(collection_id,data_for_update).as_return();
     
     }
 }
