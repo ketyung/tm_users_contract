@@ -34,7 +34,9 @@ trait CollectionsContract {
         template_type : Option<TicketTemplate>,
         contract_id : Option<AccountId>);
 
-    fn get_collection (&self, collection_id : CollectionId) -> Option<Collection>;
+
+    fn update_collection (collection_id : CollectionId,
+        update_collection_data : crate::models::CollectionDataForUpdate);
 
 }
 

@@ -128,3 +128,26 @@ pub struct CollectionId {
     pub owner : AccountId, 
 }
 
+
+
+#[derive(BorshDeserialize, BorshSerialize,Serialize, Deserialize)]
+#[serde(crate = "near_sdk::serde")]
+pub struct CollectionDataForUpdate{
+
+    pub description : Option<String>, 
+    // the icon/logo of the collection
+    pub icon : Option<String>,
+
+    pub base_uri : Option<String>,
+    
+    pub ticket_types : Option<Vec<TicketType>>,
+
+    pub total_tickets : Option<u64>,
+    
+    pub attributes : Option<Vec<Attribute>>,
+
+    pub ticket_template_type : Option<TicketTemplate>,
+
+    pub category : Option<String>,
+
+}
