@@ -19,13 +19,13 @@ near view test_tm_users_contract.testnet get_users
 
 
 // Create collection
-near call test_tm_users_contract.testnet create_collection_and_deploy '{"init_balance":21075,"collection":{"title":"Test NFT Collection 03", "symbol":"TCN03", "icon":"https://k2xpcad4sovv3myhkocu4h53g55kylfaticbna4luuejbzh6o5jq.arweave.net/Vq7xAHyTq12zB1OFTh-7N3qsLKCaBBaDi6UIkOT-d1M"}}' --deposit 21.5 --gas 300000000000000 --accountId ketyung.testnet
+near call test_tm_users_contract.testnet create_collection_and_deploy '{"init_balance":21075,"collection":{"title":"Test NFT Collection 030", "symbol":"TCN030", "icon":"https://k2xpcad4sovv3myhkocu4h53g55kylfaticbna4luuejbzh6o5jq.arweave.net/Vq7xAHyTq12zB1OFTh-7N3qsLKCaBBaDi6UIkOT-d1M"}}' --deposit 21.5 --gas 300000000000000 --accountId ketyung.testnet
 
-// Update description and icon
-near call test_tm_users_contract.testnet update_collection '{"title":"Test NFT Collection 03", "symbol":"TCN03","data_for_update":{"description":"This is the Test NFT Collection 03, which contains 50 Tickets", "icon":"https://k2xpcad4sovv3myhkocu4h53g55kylfaticbna4luuejbzh6o5jq.arweave.net/Vq7xAHyTq12zB1OFTh-7N3qsLKCaBBaDi6UIkOT-d1M?ext=png"}}' --accountId ketyung.testnet
+// Update description
+near call test_tm_users_contract.testnet update_collection '{"title":"Test NFT Collection 030", "symbol":"TCN030","data_for_update":{"description":"This is the Test NFT Collection 030, which contains 50 Tickets"}}' --accountId ketyung.testnet
 
 // update ticket types
-near call test_tm_users_contract.testnet update_collection '{"title":"Test NFT Collection 03", "symbol":"TCN03","data_for_update":{"ticket_types":[{"ticket_type":"Standard","price":23500}]}}' --accountId ketyung.testnet
+near call test_tm_users_contract.testnet update_collection '{"title":"Test NFT Collection 030", "symbol":"TCN030","data_for_update":{"ticket_types":[{"ticket_type":"Standard","price":23500}]}}' --accountId ketyung.testnet
 
 // update total tickets
-near call test_tm_users_contract.testnet update_collection '{"title":"Test NFT Collection 03", "symbol":"TCN03","data_for_update":{"total_tickets":50}}' --accountId ketyung.testnet
+near call test_tm_users_contract.testnet update_collection '{"title":"Test NFT Collection 030", "symbol":"TCN030","data_for_update":{"total_tickets":50}}' --accountId ketyung.testnet
