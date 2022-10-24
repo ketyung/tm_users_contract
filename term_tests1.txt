@@ -25,7 +25,7 @@ near call test_tm_users_contract.testnet create_collection_and_deploy '{"init_ba
 near call test_tm_users_contract.testnet update_collection '{"title":"Test NFT Collection 030", "symbol":"TCN030","data_for_update":{"description":"This is the Test NFT Collection 030, which contains 50 Tickets"}}' --accountId ketyung.testnet
 
 // update ticket types
-near call test_tm_users_contract.testnet update_collection '{"title":"Test NFT Collection 030", "symbol":"TCN030","data_for_update":{"ticket_types":[{"ticket_type":"Standard","price":23500}]}}' --accountId ketyung.testnet
+near call test_tm_users_contract.testnet update_collection '{"title":"Test NFT Collection 030", "symbol":"TCN030","data_for_update":{"ticket_types":[{"ticket_type":"Standard","price":1350}]}}' --accountId ketyung.testnet
 
 // update total tickets
 near call test_tm_users_contract.testnet update_collection '{"title":"Test NFT Collection 030", "symbol":"TCN030","data_for_update":{"total_tickets":50}}' --accountId ketyung.testnet
