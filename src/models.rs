@@ -53,12 +53,14 @@ pub enum AttributeType {
     StartDate,
 
     EndDate, 
-
-    StartTime,
-
-    EndTime, 
-
+    
     MaxTicketPerWallet,
+
+    Venue,
+
+    LocationCoord,
+
+    SalesPageTemplate,
 }
 
 
