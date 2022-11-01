@@ -32,3 +32,12 @@ near call test_tm_users_contract.testnet update_collection '{"title":"Test NFT C
 
 // update category
 near call test_tm_users_contract.testnet update_collection '{"title":"Test NFT Collection 030", "symbol":"TCN030","data_for_update":{"category":"Concert Ticket"}}' --accountId ketyung.testnet
+
+// update the sales page template id
+near call test_tm_users_contract.testnet update_collection '{"title":"Test NFT Collection 030", "symbol":"TCN030","data_for_update":{"attributes":[{"name":"SalesPageTemplate","value":"1"}]}}' --accountId ketyung.testnet
+
+// update Max ticket per wallet
+near call test_tm_users_contract.testnet update_collection '{"title":"Test NFT Collection 030", "symbol":"TCN030","data_for_update":{"attributes":[{"name": "MaxTicketPerWallet","value":"1"}]}}' --accountId ketyung.testnet
+
+// update Venue
+near call test_tm_users_contract.testnet update_collection '{"title":"Test NFT Collection 030", "symbol":"TCN030","data_for_update":{"attributes":[{"name": "Venue","value":"Kota Kinabalu"}]}}' --accountId ketyung.testnet
