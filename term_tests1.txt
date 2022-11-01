@@ -41,3 +41,6 @@ near call test_tm_users_contract.testnet update_collection '{"title":"Test NFT C
 
 // update Venue
 near call test_tm_users_contract.testnet update_collection '{"title":"Test NFT Collection 030", "symbol":"TCN030","data_for_update":{"attributes":[{"name": "Venue","value":"Kota Kinabalu"}]}}' --accountId ketyung.testnet
+
+// update StartDate
+near call test_tm_users_contract.testnet update_collection '{"title":"Test NFT Collection 030", "symbol":"TCN030","data_for_update":{"attributes":[{"name": "StartDate","value":"11/Nov/2022 20:00"}]}}' --accountId ketyung.testnet
