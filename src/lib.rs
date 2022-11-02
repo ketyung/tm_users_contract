@@ -2,7 +2,7 @@ pub mod models;
 pub mod ext;
 pub mod users_view;
 pub mod users_manage;
-pub mod nft_deploy;
+pub mod collecton_manage;
 pub mod ticket_mint;
 
 use near_sdk::borsh::{self, BorshDeserialize, BorshSerialize};
