@@ -255,7 +255,7 @@ impl Contract {
         }
 
         let str = call_result.unwrap();
-        env::log_str(format!("next.ticket.number.is:{}",str  ).as_str());
+        env::log_str(format!("<NextTicketNumber>{}</NextTicketNumber>",str  ).as_str());
     }
 
    
