@@ -228,23 +228,21 @@ impl Contract {
 impl Contract {
 
     pub fn get_next_ticket_number (&mut self, collection_id : CollectionId,
-        width : Option<usize>) -> Option<NextTicketNumber> {
+        width : Option<usize>) -> Option<String> {
 
-        let ticket_no : String = String::from("");
-
-        let mut next_ticket_num = NextTicketNumber {value : ticket_no};
+        let mut next_ticket_num = NextTicketNumber {value : String::from("None")};
 
         collections_contract::ext(Self::get_collections_contract_id(
         self.collections_contract_id.clone()))
         .with_static_gas(Gas(5*TGAS))
         .get_next_ticket_number(collection_id, width)
         .then(
-
             Self::ext(env::current_account_id())
             .with_static_gas(Gas(CALLBACK_TGAS))
             .next_ticket_number_callback(&mut next_ticket_num)
-        );
-        return Some(next_ticket_num);
+        ).as_return();
+
+        return Some(next_ticket_num.value);
 
     }
 

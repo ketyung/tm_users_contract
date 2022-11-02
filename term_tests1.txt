@@ -45,3 +45,5 @@ near call test_tm_users_contract.testnet update_collection '{"title":"Test NFT C
 // update StartDate
 near call test_tm_users_contract.testnet update_collection '{"title":"Test NFT Collection 030", "symbol":"TCN030","data_for_update":{"attributes":[{"name":"StartDate","value":"11/Nov/2022 19:30"}]}}' --accountId ketyung.testnet
 
+// To get next ticket number 
+near call test_tm_users_contract.testnet get_next_ticket_number '{"collection_id":{"title":"Test NFT Collection 030", "symbol":"TCN030", "owner":"ketyung.testnet"}}' --accountId peipei007.testnet
