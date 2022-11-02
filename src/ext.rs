@@ -38,6 +38,15 @@ trait CollectionsContract {
     fn update_collection (collection_id : CollectionId,
         update_collection_data : crate::models::CollectionDataForUpdate);
 
+        
+    fn ticket_mint (&mut self, 
+        collection_id : CollectionId, 
+        token_id : TokenId, ticket_image : String,
+        ticket_type : Option<TicketType>,
+        extra  : Option<String>,
+        ref_hash : Option<String>);
+        
+
 }
 
 

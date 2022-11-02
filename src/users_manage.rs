@@ -18,7 +18,7 @@ impl Contract {
     
     pub fn signup_user (&mut self, first_name : String, last_name : String,
     profile_image : Option<String>, email : Option<String>, mobile_number : Option<String> ){
-        self.add_user(env::signer_account_id().as_str().to_string(), first_name, last_name, profile_image, email,mobile_number);
+        self.add_user(env::signer_account_id().to_string(), first_name, last_name, profile_image, email,mobile_number);
     }
 
     pub(crate) fn add_user (&mut self, id : String,  first_name : String, last_name : String, 
@@ -68,7 +68,7 @@ impl Contract {
     pub fn update_user (&mut self, first_name : Option<String>, last_name : Option<String>,
         profile_image : Option<String>, email : Option<String>, mobile_number : Option<String>) {
 
-        let id = env::signer_account_id().as_str().to_string();
+        let id = env::signer_account_id().to_string();
 
         let user = self.users.get(&id); 
 

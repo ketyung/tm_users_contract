@@ -9,13 +9,13 @@ impl Contract {
 
         let acc_id : AccountId = format!("{}_{}.{}", 
         sub_account_id.to_lowercase(),
-        env::signer_account_id().as_str().to_string().replace(".","_"),
+        env::signer_account_id().to_string().replace(".","_"),
         env::current_account_id()).parse().unwrap();
 
         acc_id 
     }
 
-    fn get_collections_contract_id(collections_contract_id : Option<AccountId>) -> AccountId {
+    pub (crate) fn get_collections_contract_id(collections_contract_id : Option<AccountId>) -> AccountId {
 
         if collections_contract_id.is_some(){
 
