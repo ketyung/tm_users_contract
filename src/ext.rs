@@ -46,7 +46,7 @@ trait CollectionsContract {
         extra  : Option<String>,
         ref_hash : Option<String>);
     
-    fn get_next_ticket_number (collection_id : CollectionId,
+    fn gen_next_ticket_number (collection_id : CollectionId,
             width : Option<usize>) -> Option<String>;
             
 
