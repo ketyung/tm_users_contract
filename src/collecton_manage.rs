@@ -240,7 +240,8 @@ impl Contract {
             Self::ext(env::current_account_id())
             .with_static_gas(Gas(CALLBACK_TGAS))
             .next_ticket_number_callback(&mut next_ticket_num)
-        ).as_return();
+            .as_return()
+        );
 
         return Some(next_ticket_num.value);
 
