@@ -1,5 +1,5 @@
 use crate::*;
-
+use crate::models::NextTicketNumber;
 
 #[near_bindgen]
 impl Contract {
@@ -222,4 +222,47 @@ impl Contract {
         .update_collection(collection_id,data_for_update).as_return();
     
     }
+}
+
+#[near_bindgen]
+impl Contract {
+
+    pub fn get_next_ticket_number (&mut self, collection_id : CollectionId,
+        width : Option<usize>) -> Option<NextTicketNumber> {
+
+        let ticket_no : String = String::from("");
+
+        let mut next_ticket_num = NextTicketNumber {value : ticket_no};
+
+        collections_contract::ext(Self::get_collections_contract_id(
+        self.collections_contract_id.clone()))
+        .with_static_gas(Gas(5*TGAS))
+        .get_next_ticket_number(collection_id, width)
+        .then(
+
+            Self::ext(env::current_account_id())
+            .with_static_gas(Gas(CALLBACK_TGAS))
+            .next_ticket_number_callback(&mut next_ticket_num)
+        );
+        return Some(next_ticket_num);
+
+    }
+
+    #[private]
+    pub fn next_ticket_number_callback(
+        next_ticket_num :&mut  NextTicketNumber,
+        #[callback_result] call_result: Result<String, PromiseError>) 
+    {
+
+        if call_result.is_err() {
+
+            env::panic_str("Error!@x");
+        }
+
+        let str = call_result.unwrap();
+        next_ticket_num.value = str ;
+        env::log_str(format!("next.ticket.number.is:{}",next_ticket_num.value ).as_str());
+    }
+
+   
 }

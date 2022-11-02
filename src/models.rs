@@ -154,3 +154,12 @@ pub struct CollectionDataForUpdate{
     pub category : Option<String>,
 
 }
+
+
+#[derive(BorshDeserialize, BorshSerialize,Serialize, Deserialize, Clone)]
+#[serde(crate = "near_sdk::serde")]
+pub struct NextTicketNumber {
+
+    pub value : String, 
+
+}
