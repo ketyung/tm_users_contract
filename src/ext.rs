@@ -36,7 +36,7 @@ trait CollectionsContract {
 
 
     fn update_collection (collection_id : CollectionId,
-        update_collection_data : crate::models::CollectionDataForUpdate);
+        update_collection_data : CollectionDataForUpdate);
 
         
     fn ticket_mint (&mut self, 

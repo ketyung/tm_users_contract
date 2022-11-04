@@ -208,10 +208,10 @@ impl Contract {
     // update the collection
     pub fn update_collection (&self, title : String,
         symbol : String,
-        data_for_update : crate::models::CollectionDataForUpdate){
+        data_for_update : CollectionDataForUpdate){
         
         let collection_id = CollectionId {
-            owner : env::signer_account_id().as_str().to_string(),
+            owner : env::signer_account_id(),
             title : title,
             symbol : symbol,
         };

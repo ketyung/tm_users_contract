@@ -5,11 +5,13 @@ pub mod users_manage;
 pub mod collecton_manage;
 pub mod ticket_mint;
 
+
 use near_sdk::borsh::{self, BorshDeserialize, BorshSerialize};
 use near_sdk::{near_bindgen, env, ext_contract, BorshStorageKey,AccountId, Balance, Promise, Gas, PromiseError};
 use near_sdk::collections::{UnorderedMap};
 use near_sdk::serde::{Serialize, Deserialize};
 use near_contract_standards::non_fungible_token::{TokenId};
+use tm_collections_models::models::*;
 use crate::models::*;
 use ext::*;
 

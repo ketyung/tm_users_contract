@@ -25,7 +25,7 @@ pub struct User {
 }
 
 
-
+/*
 #[derive(Debug, Clone, Serialize, Deserialize, BorshDeserialize, BorshSerialize)]
 #[serde(crate = "near_sdk::serde")]
 pub enum TicketTemplateType {
@@ -155,3 +155,4 @@ pub struct CollectionDataForUpdate{
 
 }
 
+*/
