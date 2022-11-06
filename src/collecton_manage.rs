@@ -126,7 +126,7 @@ impl Contract {
         .with_static_gas(Gas(5*TGAS))
         .init_with_metadata(env::signer_account_id(), 
         collection.title.clone(), collection.symbol.clone(), icon, 
-        collection.base_uri.clone())
+        collection.base_uri.clone(), collections_contract_id.clone())
         .then(
 
             Self::ext(env::current_account_id())
