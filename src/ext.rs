@@ -10,7 +10,8 @@ pub const XCC_SUCCESS: u64 = 1;
 trait NftContract {
   
     fn init_with_metadata(owner_id: AccountId, name : String, symbol : String,
-        icon : Option<String>, base_uri : Option<String>, allowed_minting_caller : Option<AccountId> );    
+        icon : Option<String>, base_uri : Option<String>, 
+        allowed_callers : Option<Vec<AccountId>> );    
 }
 
 
