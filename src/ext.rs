@@ -49,7 +49,8 @@ trait CollectionsContract {
     
     fn gen_next_ticket_number (collection_id : CollectionId,
             width : Option<usize>) -> Option<String>;
-            
+          
+    fn get_collection (collection_id : CollectionId) -> Option<Collection>;
 
 }
 
