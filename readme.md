@@ -1,5 +1,5 @@
 ## Smart contract for ticket collection
-The smart contract for storing ahd handling users and cross-contract 
+The smart contract for storing and handling users and cross-contract 
 calls to other contracts of TicketMaker. https://ticketmaker.xyz
 
 ## License 
