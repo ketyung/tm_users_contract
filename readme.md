@@ -1,4 +1,4 @@
-## Smart contract for ticket collection
+## The main smart contract for TicketMaker
 The smart contract for storing and handling users and cross-contract 
 calls to other contracts of TicketMaker. https://ticketmaker.xyz
 
